@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class FoodController extends Controller
 {
     public function index () {
-        $food = Food::where('name', 'grecha')->first() ;
+        $food = Food::query()->where('name', 'kurochka')->first() ;
         dd($food->description);
     }
 
