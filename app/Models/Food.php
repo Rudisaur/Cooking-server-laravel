@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Food extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+
+    use HasFactory; use SoftDeletes;
+
     protected $table = 'food';
     protected $guarded = false;
 }

@@ -7,19 +7,21 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
-    public function createUser($request)
+    public function createUser(array $request): array
     {
-        $user = User::create([
-            'name' => $request->validated('name'),
-            'email' => $request->validated('email'),
-            'password' => Hash::make($request->validated('password')),
+        $user = User::query()->create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
-        $key = 'secret_key';
-        $payload = [
+        return [
             'id' => $user->id,
             'iat' => Carbon::now()->timestamp + 20
         ];
-        $jwt = JWT::encode($payload, $key, 'HS256');
-        dd($jwt);
+    }
+
+    public function getJWT(array $payload): string
+    {
+        return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
     }
 }
