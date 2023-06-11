@@ -26,7 +26,7 @@ class AuthRequest extends RootRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email', ],
             'password' => ['required', 'min:8'],
         ];
     }
