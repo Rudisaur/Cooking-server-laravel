@@ -15,6 +15,7 @@ class AuthController extends Controller
         $userId = $authService->createUser($request->validated());
         $refreshToken = $authService->createJWT($userId, TokenType::REFRESH);
         setcookie('refreshToken',$refreshToken, time()+7200);
+        $authService->setRefreshToken($userId, $refreshToken);
         return response()->json([
             'accessToken' => $authService->createJWT($userId, TokenType::ACCESS),
         ]);

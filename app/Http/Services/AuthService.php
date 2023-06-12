@@ -30,4 +30,11 @@ class AuthService
         ];
         return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
     }
+    public function setRefreshToken($userId, $refreshToken)
+    {
+        $user = User::query()->find($userId);
+        $user->query()->update([
+            'remember_token'=>$refreshToken
+        ]);
+    }
 }
