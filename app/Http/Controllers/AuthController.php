@@ -13,8 +13,11 @@ class AuthController extends Controller
     public function register(AuthRequest $request, AuthService $authService): JsonResponse
     {
         $userId = $authService->createUser($request->validated());
+        $refreshToken = $authService->createJWT($userId, TokenType::REFRESH);
+        setcookie('refreshToken',$refreshToken, time()+7200);
         return response()->json([
             'accessToken' => $authService->createJWT($userId, TokenType::ACCESS),
         ]);
+
     }
 }
