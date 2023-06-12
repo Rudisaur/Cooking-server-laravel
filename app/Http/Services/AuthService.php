@@ -4,6 +4,8 @@ use App\Enums\TokenType;
 use App\Models\User;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService
@@ -36,5 +38,17 @@ class AuthService
         $user->query()->update([
             'remember_token'=>$refreshToken
         ]);
+    }
+    public function loginUser(array $request){
+        if(Auth::attempt($request)){
+            $user = DB::table('users')->where('email','=',$request['email'])->first();
+            $userId = $user->id;
+
+            return $userId;
+        }
+        return back()->withErrors([
+            'email' => 'Invalid credentials',
+        ]);
+
     }
 }

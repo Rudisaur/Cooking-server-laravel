@@ -3,10 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Validator;
 
-class AuthRequest extends RootRequest
+class LoginRequest extends RootRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +14,6 @@ class AuthRequest extends RootRequest
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,9 +22,8 @@ class AuthRequest extends RootRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8'],
+            'email'=>['required','email',],
+            'password'=>['required', 'min:8']
         ];
     }
 }
