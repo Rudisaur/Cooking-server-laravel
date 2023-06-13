@@ -41,10 +41,8 @@ class AuthService
     }
     public function loginUser(array $request){
         if(Auth::attempt($request)){
-            $user = DB::table('users')->where('email','=',$request['email'])->first();
-            $userId = $user->id;
-
-            return $userId;
+            //$user = DB::table('users')->where('email','=',$request['email'])->first();
+            return User::query()->where('email' , $request['email'])->first()->id;
         }
         return back()->withErrors([
             'email' => 'Invalid credentials',
