@@ -24,6 +24,17 @@ class AuthService
         $token = $user->createToken('auth_token')->plainTextToken;
         return $token;
     }
+    public function loginUser(array $request)
+    {
+        if (Auth::attempt($request)) {
+            $user = Auth::user();
+            $token = $user->createToken('sanctum-token')->plainTextToken;
+
+            return $token;
+        } else {
+            return null;
+        }
+    }
 
 //    public function createJWT(int $userId, TokenType $tokenType): string
 //    {

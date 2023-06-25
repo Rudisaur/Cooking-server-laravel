@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IngredientsController;
-use App\http\Controllers\FoodController;
+use App\http\Controllers\RecipeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
