@@ -21,9 +21,9 @@ class AuthService
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return $token;
+        return $user->createToken('auth_token')->plainTextToken;
     }
+
     public function loginUser(array $request)
     {
         if (Auth::attempt($request)) {
@@ -31,9 +31,8 @@ class AuthService
             $token = $user->createToken('sanctum-token')->plainTextToken;
 
             return $token;
-        } else {
-            return null;
         }
+        return null;
     }
 
 //    public function createJWT(int $userId, TokenType $tokenType): string
