@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IngredientsController;
+use App\Http\Controllers\IngredientController;
 use App\http\Controllers\RecipeController;
 /*
 |--------------------------------------------------------------------------

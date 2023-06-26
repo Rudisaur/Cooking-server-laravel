@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('uuid')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->text('description');
             $table->string('image_link');

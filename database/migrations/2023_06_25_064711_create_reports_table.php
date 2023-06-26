@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('date');
             $table->unsignedBigInteger('total_purchase_amount');
             $table->integer('count_of_ingredients');

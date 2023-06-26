@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Ingredient extends Model
 {
     use HasFactory;
-    public function recipe()
+    public function recipes()
     {
         return $this->belongsToMany(Recipe::class,'recipes_ingredients');
     }
-    public function report()
+    public function reports()
     {
         return $this->belongsToMany(Report::class, 'reports_ingredients');
     }

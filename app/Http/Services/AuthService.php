@@ -31,8 +31,6 @@ class AuthService
             $token = $user->createToken('sanctum-token')->plainTextToken;
 
             return $token;
-        } else {
-            return null;
         }
     }
 
