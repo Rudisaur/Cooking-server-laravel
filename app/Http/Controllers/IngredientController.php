@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Ingredient\IngredientListRequest;
 use App\Http\Services\IngredientService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
@@ -15,8 +14,9 @@ class IngredientController extends Controller
 
         return ;
     }
-    public function index(Request $request, IngredientService $service)
+    public function index(IngredientListRequest $request, IngredientService $service)
     {
+        dd($request->validated('name'));
         $ingredients = $service->ingredientGetter($request->input('query'));
         return response()->json($ingredients);
     }
