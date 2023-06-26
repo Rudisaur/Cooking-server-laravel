@@ -16,8 +16,7 @@ class IngredientController extends Controller
     }
     public function index(IngredientListRequest $request, IngredientService $service)
     {
-        dd($request->validated('name'));
-        $ingredients = $service->ingredientGetter($request->input('query'));
+        $ingredients = $service->getIngredient($request->validated('name'));
         return response()->json($ingredients);
     }
     public function update(Request $request)

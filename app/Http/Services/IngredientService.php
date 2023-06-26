@@ -3,28 +3,29 @@
 namespace App\Http\Services;
 
 use App\Models\Ingredient;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class IngredientService
 {
-    public function ingredientCreator(array $request)
+    public function createIngredient(array $request)
     {
         $ingredient = Ingredient::query()->create($request);
         return $ingredient->name;
     }
-    public function ingredientDeleter($id)
+    public function deleteIngredient($id)
     {
         Ingredient::query()->delete($id);
         return 'deleted';
     }
-    public function ingredientChanger(array $request)
+
+    public function updateIngredient(array $request)
     {
         $ingredient = Ingredient::query()->update($request);
         return $ingredient->name;
     }
-    public function ingredientGetter($request)
-    {
-        $ingredients = Ingredient::where('name', 'LIKE', '%' . $request . '%')->paginate(20);
 
-        return $ingredients;
+    public function getIngredient(string $name): LengthAwarePaginator
+    {
+        return Ingredient::query()->where('name', 'ILIKE', '%' . $name . '%')->paginate(20);
     }
 }
