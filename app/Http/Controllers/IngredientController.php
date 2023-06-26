@@ -10,21 +10,21 @@ use Illuminate\Http\Request;
 class IngredientController extends Controller
 {
     //
-    public function createIngredient(Request $request, IngredientService $service)
+    public function store(Request $request, IngredientService $service)
     {
 
         return ;
     }
-    public function getIngredient(Request $request, IngredientService $service)
+    public function index(Request $request, IngredientService $service)
     {
         $ingredients = $service->ingredientGetter($request->input('query'));
         return response()->json($ingredients);
     }
-    public function changeIngredient(Request $request)
+    public function update(Request $request)
     {
 
     }
-    public function deleteIngredient(Request $request)
+    public function destroy(Request $request)
     {
 
     }

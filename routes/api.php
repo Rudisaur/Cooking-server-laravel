@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Protected routes
-Route::group(['middleware'=>'auth:sanctum'], function (){
+Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::post('/recipe/create', [RecipeController::class, 'createRecipe']);
     Route::get('/recipe/my', [RecipeController::class, 'getMyRecipe']);
     Route::put('/recipe/change', [RecipeController::class, 'changeRecipe']);
@@ -36,13 +36,13 @@ Route::group(['middleware'=>'auth:sanctum'], function (){
     Route::put('/report/change', [ReportController::class, 'changeReport']);
     Route::delete('/report/delete', [ReportController::class, 'deleteReport']);
     // admin role
-    Route::post('/ingredient/create', [IngredientController::class, 'createIngredient']);
-    Route::put('/ingredient/change', [IngredientController::class, 'changeIngredient']);
-    Route::delete('/ingredient/delete', [IngredientController::class, 'deleteIngredient']);
+    Route::resource('ingredients', IngredientController::class)->except('index');
 });
+
 // Public routes
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login',[UserController::class, 'login']);
+Route::resource('ingredients', IngredientController::class)->only('index');
 
 Route::get('cooks', [UserController::class, 'getUsers']);
 Route::get('/ingredient/get', [IngredientController::class, 'getIngredient']);
