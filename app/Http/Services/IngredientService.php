@@ -7,6 +7,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class IngredientService
 {
+
     public function createIngredient(array $request)
     {
         $ingredient = Ingredient::query()->create($request);
@@ -24,7 +25,7 @@ class IngredientService
         return $ingredient->name;
     }
 
-    public function getIngredient(string $name): LengthAwarePaginator
+    public function getIngredient(?string $name): LengthAwarePaginator
     {
         return Ingredient::query()->where('name', 'ILIKE', '%' . $name . '%')->paginate(20);
     }
