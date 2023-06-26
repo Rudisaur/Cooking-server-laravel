@@ -2,7 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\IngredientController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,5 +21,29 @@ use App\Http\Controllers\AuthController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login',[AuthController::class, 'login']);
+// Protected routes
+Route::group(['middleware'=>'auth:sanctum'], function (){
+    Route::post('/recipe/create', [RecipeController::class, 'createRecipe']);
+    Route::get('/recipe/my', [RecipeController::class, 'getMyRecipe']);
+    Route::put('/recipe/change', [RecipeController::class, 'changeRecipe']);
+    Route::delete('/recipe/delete', [RecipeController::class, 'deleteRecipe']);
+    Route::post('/restaurant/create', [RestaurantController::class, 'createRestaurant']);
+    Route::get('/restaurant/get', [RestaurantController::class, 'getRestaurant']);
+    Route::put('/restaurant/change', [RestaurantController::class, 'changeRestaurant']);
+    Route::delete('/restaurant/delete', [RestaurantController::class, 'deleteRestaurant']);
+    Route::post('/report/create', [ReportController::class, 'createReport']);
+    Route::get('/report/get', [ReportController::class, 'getReport']);
+    Route::put('/report/change', [ReportController::class, 'changeReport']);
+    Route::delete('/report/delete', [ReportController::class, 'deleteReport']);
+    // admin role
+    Route::post('/ingredient/create', [IngredientController::class, 'createIngredient']);
+    Route::put('/ingredient/change', [IngredientController::class, 'changeIngredient']);
+    Route::delete('/ingredient/delete', [IngredientController::class, 'deleteIngredient']);
+});
+// Public routes
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login',[UserController::class, 'login']);
+
+Route::get('cooks', [UserController::class, 'getUsers']);
+Route::get('/ingredient/get', [IngredientController::class, 'getIngredient']);
+Route::get('/recipes', [RecipeController::class,'getRecipes']);
