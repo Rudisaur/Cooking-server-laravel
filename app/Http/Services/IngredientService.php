@@ -4,12 +4,14 @@ namespace App\Http\Services;
 
 use App\Models\Ingredient;
 use Illuminate\Pagination\LengthAwarePaginator;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class IngredientService
 {
 
     public function createIngredient(array $request)
     {
+        dd($request);
         $ingredient = Ingredient::query()->create($request);
         return $ingredient->name;
     }

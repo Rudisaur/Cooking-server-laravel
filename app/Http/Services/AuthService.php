@@ -7,6 +7,7 @@ use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class AuthService
 {
@@ -20,6 +21,7 @@ class AuthService
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'role'=>'cook',
         ]);
         return $user->createToken('auth_token')->plainTextToken;
     }
