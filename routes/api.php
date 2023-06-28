@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // Protected routes
 Route::group(['middleware'=>'auth:sanctum'], function () {
-    Route::post('/recipe/create', [RecipeController::class, 'createRecipe']);
-    Route::get('/recipe/my', [RecipeController::class, 'getMyRecipe']);
-    Route::put('/recipe/change', [RecipeController::class, 'changeRecipe']);
-    Route::delete('/recipe/delete', [RecipeController::class, 'deleteRecipe']);
+    Route::post('/Recipe/create', [RecipeController::class, 'createRecipe']);
+    Route::get('/Recipe/my', [RecipeController::class, 'getMyRecipe']);
+    Route::put('/Recipe/change', [RecipeController::class, 'changeRecipe']);
+    Route::delete('/Recipe/delete', [RecipeController::class, 'deleteRecipe']);
     Route::post('/restaurant/create', [RestaurantController::class, 'createRestaurant']);
     Route::get('/restaurant/get', [RestaurantController::class, 'getRestaurant']);
     Route::put('/restaurant/change', [RestaurantController::class, 'changeRestaurant']);

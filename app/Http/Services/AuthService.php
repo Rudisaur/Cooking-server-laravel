@@ -23,6 +23,7 @@ class AuthService
             'password' => Hash::make($request['password']),
             'role'=>'cook',
         ]);
+
         return $user->createToken('auth_token')->plainTextToken;
     }
 
