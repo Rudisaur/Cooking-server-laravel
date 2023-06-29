@@ -13,10 +13,3 @@ use App\http\Controllers\RecipeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return 'main';
-});
-Route::get('/profile', function () {
-    return 'profile';
-});

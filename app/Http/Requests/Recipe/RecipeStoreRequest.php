@@ -10,10 +10,6 @@ class RecipeStoreRequest extends RootRequest
     public function rules(): array
     {
         return [
-            'User_id'=>[
-                'required',
-                'string'
-            ],
             'name'=>[
                 'required',
                 'string',
@@ -26,7 +22,6 @@ class RecipeStoreRequest extends RootRequest
             ],
             'image'=>[
                 'file',
-                'required'
             ]
         ];
     }

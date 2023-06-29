@@ -31,7 +31,7 @@ class AuthService
     {
         if (Auth::attempt($request)) {
             $user = Auth::user();
-            $token = $user->createToken('sanctum-token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             return $token;
         }

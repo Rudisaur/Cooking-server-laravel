@@ -14,17 +14,12 @@ class UserController extends Controller
     public function register(RegisterRequest $request, AuthService $authService): JsonResponse
     {
         $token = $authService->createUser($request->validated());
-        //setcookie('X-XSRF-TOKEN', $token);
         return response()->json(['accessToken' => $token]);
-
-
     }
 
     public function login(LoginRequest $request, AuthService $authService)
     {
         $token = $authService->loginUser($request->validated());
-
-        setcookie('X-XSRF-TOKEN', $token);
         return response()->json($token);
     }
 

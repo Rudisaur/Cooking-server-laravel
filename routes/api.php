@@ -23,10 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // Protected routes
 Route::group(['middleware'=>'auth:sanctum'], function () {
-    Route::post('/Recipe/create', [RecipeController::class, 'createRecipe']);
-    Route::get('/Recipe/my', [RecipeController::class, 'getMyRecipe']);
-    Route::put('/Recipe/change', [RecipeController::class, 'changeRecipe']);
-    Route::delete('/Recipe/delete', [RecipeController::class, 'deleteRecipe']);
+    Route::resource('recipe', RecipeController::class);
     Route::post('/restaurant/create', [RestaurantController::class, 'createRestaurant']);
     Route::get('/restaurant/get', [RestaurantController::class, 'getRestaurant']);
     Route::put('/restaurant/change', [RestaurantController::class, 'changeRestaurant']);
@@ -36,7 +33,7 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::put('/report/change', [ReportController::class, 'changeReport']);
     Route::delete('/report/delete', [ReportController::class, 'deleteReport']);
     // admin role
-    Route::resource('ingredients', IngredientController::class)->except('index');
+    Route::resource('ingredients', IngredientController::class);
 });
 
 // Public routes

@@ -18,6 +18,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'remember_token',
     ];
     protected $keyType = 'string';
     public $incrementing = false;
