@@ -10,19 +10,23 @@ class RecipeStoreRequest extends RootRequest
     public function rules(): array
     {
         return [
-            'name'=>[
+            'name' => [
                 'required',
                 'string',
                 'max:100',
                 'min:1',
             ],
-            'description'=>[
+            'description' => [
                 'nullable',
                 'string',
             ],
-            'image'=>[
+            'image' => [
                 'file',
-            ]
+            ],
+            'ingredients' => [
+                'array'
+            ],
         ];
     }
 }
+
