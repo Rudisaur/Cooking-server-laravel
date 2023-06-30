@@ -32,20 +32,27 @@ class RecipeService
                 $recipe->ingredients()->attach($ingredientData['id'], [
                     'description' => $ingredientData['description'],
                     'number' => $ingredientData['stage'],
-                    "weigh_in_gram"=>$ingredientData['weigh_in_gram'],
+                    "weigh_in_gram" => $ingredientData['weigh_in_gram'],
                 ]);
+                return $recipe;
             } else {
                 abort(400);
             }
         }
-
-
     }
 
-    public
-    function updateRecipe(array $values)
+    public function updateRecipe(array $data, Recipe $recipe)
     {
-        return Recipe::query()->update($values);
+        if ($data['image']) {
+            $uploadedFile = $data['image'];
+            $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
+            $recipe->update(['image_link'=>$imageUrl]);
+        }
+        $recipe->update([
+            'name' => $data['name'],
+            'description' => $data['description'],
+        ]);
+        return $recipe;
     }
 
     public
