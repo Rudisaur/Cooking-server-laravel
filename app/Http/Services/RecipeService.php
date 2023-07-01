@@ -52,12 +52,20 @@ class RecipeService
             'name' => $data['name'],
             'description' => $data['description'],
         ]);
+        $ingredientsData = [];
+        foreach ($data['ingredients'] as $ingredientData){
+            if (Ingredient::query()->where('id', $ingredientData['id'])->exists()) {
+                $ingredientsData[$ingredientData['id']] = [
+                    'description' => $ingredientData['description'],
+                    'number' => $ingredientData['stage'],
+                    'weigh_in_gram' => $ingredientData['weigh_in_gram'],
+                ];
+            } else {
+                abort(400);
+            }
+        }
+        $recipe->ingredients()->sync($ingredientsData);
         return $recipe;
     }
 
-    public
-    function deleteRecipe(int $id)
-    {
-        return Recipe::query()->delete($id);
-    }
 }
