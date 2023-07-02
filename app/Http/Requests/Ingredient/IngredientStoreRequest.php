@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ingredient;
+namespace App\Http\Requests\Ingredient;
 
 use App\Http\Requests\RootRequest;
 

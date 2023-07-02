@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Ingredient\IngredientDeleteRequest;
 use App\Http\Requests\Ingredient\IngredientListRequest;
-use App\Http\Requests\ingredient\IngredientStoreRequest;
+use App\Http\Requests\Ingredient\IngredientStoreRequest;
 use App\Http\Requests\Ingredient\IngredientUpdateRequest;
 use App\Http\Services\IngredientService;
 use App\Models\Ingredient;
@@ -20,7 +20,10 @@ class IngredientController extends Controller
     //
     public function store(IngredientStoreRequest $request)
     {
-        return new JsonResponse($this->service->createIngredient($request->validated()));
+        //$this->service->createIngredient($request->validated());
+        return new JsonResponse([
+            'message' => __('messages.ingredient.store.success', locale: $request->cookie('lang'))
+        ]);
     }
 
     public function index(IngredientListRequest $request)
