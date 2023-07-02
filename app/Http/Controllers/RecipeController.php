@@ -32,9 +32,10 @@ class RecipeController extends Controller
         return new JsonResponse($this->service->updateRecipe($request->validated(), $recipe));
     }
 
-    public function destroy($request)
+    public function destroy(Recipe $recipe)
     {
-
+        $recipe->delete();
+        return new JsonResponse();
     }
 
 }

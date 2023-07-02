@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('date');
-            $table->unsignedBigInteger('total_purchase_amount');
-            $table->integer('count_of_ingredients');
+            $table->unsignedBigInteger('total_purchase_amount')->nullable();
+            $table->integer('count_of_ingredients')->nullable();
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->timestamps();

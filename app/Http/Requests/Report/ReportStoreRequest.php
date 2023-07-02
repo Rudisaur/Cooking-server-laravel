@@ -20,7 +20,7 @@ class ReportStoreRequest extends RootRequest
             'date' => [
                 'int',
                 'required'
-            ]
+            ],
         ];
     }
 }
