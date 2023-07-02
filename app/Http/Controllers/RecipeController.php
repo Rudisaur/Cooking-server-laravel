@@ -19,7 +19,10 @@ class RecipeController extends Controller
     }
     public function store(RecipeStoreRequest $request)
     {
-        return new JsonResponse($this->service->createRecipe($request->validated()));
+        return new JsonResponse([
+            $this->service->createRecipe($request->validated()),
+            'message' => __('messages.recipe.store.success', locale: $request->cookie('lang'))
+        ]);
     }
 
     public function index(RecipeListRequest $request)
@@ -29,13 +32,18 @@ class RecipeController extends Controller
 
     public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
-        return new JsonResponse($this->service->updateRecipe($request->validated(), $recipe));
+        return new JsonResponse([
+            $this->service->updateRecipe($request->validated(), $recipe),
+        'message' => __('messages.recipe.update.success', locale: $request->cookie('lang'))
+        ]);
     }
 
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return new JsonResponse();
+        return new JsonResponse([
+            'message' => __('messages.recipe.delete.success', locale: request()->cookie('lang'))
+        ]);
     }
 
 }

@@ -20,12 +20,18 @@ class ReportController extends Controller
 
     public function store(ReportStoreRequest $request)
     {
-        return new JsonResponse($this->service->createReport($request->validated()));
+        return new JsonResponse([
+            $this->service->createReport($request->validated()),
+            'message' => __('messages.report.store.success', locale: $request->cookie('lang'))
+        ]);
     }
 
     public function update(RecipeUpdateRequest $request, Report $report)
     {
-        return new JsonResponse($this->service->updateReport($request->validated(), $report));
+        return new JsonResponse([
+            $this->service->updateReport($request->validated(), $report),
+            'message' => __('messages.report.update.success', locale: $request->cookie('lang'))
+            ]);
     }
     public function index(ReportListRequest $request)
     {
@@ -34,6 +40,8 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         $report->delete();
-        return new JsonResponse();
+        return new JsonResponse([
+            'message' => __('messages.report.delete.success', locale: request()->cookie('lang'))
+        ]);
     }
 }
