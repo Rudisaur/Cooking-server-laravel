@@ -14,9 +14,16 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    public function __construct(private RecipeService $service){
+    public function __construct(private RecipeService $service)
+    {
 
     }
+
+    public function index(RecipeListRequest $request)
+    {
+        return new JsonResponse($this->service->getRecipe($request->validated('name')));
+    }
+
     public function store(RecipeStoreRequest $request)
     {
         return new JsonResponse([
@@ -25,16 +32,11 @@ class RecipeController extends Controller
         ]);
     }
 
-    public function index(RecipeListRequest $request)
-    {
-        return new JsonResponse($this->service->getRecipe($request->validated('name')));
-    }
-
     public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
         return new JsonResponse([
             $this->service->updateRecipe($request->validated(), $recipe),
-        'message' => __('messages.recipe.update.success', locale: $request->cookie('lang'))
+            'message' => __('messages.recipe.update.success', locale: $request->cookie('lang'))
         ]);
     }
 

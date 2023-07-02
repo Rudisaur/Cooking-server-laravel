@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Ingredient\IngredientDeleteRequest;
 use App\Http\Requests\Ingredient\IngredientListRequest;
 use App\Http\Requests\Ingredient\IngredientStoreRequest;
 use App\Http\Requests\Ingredient\IngredientUpdateRequest;
 use App\Http\Services\IngredientService;
 use App\Models\Ingredient;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Routing\AbstractRouteCollection;
 
 class IngredientController extends Controller
 {
@@ -18,7 +15,11 @@ class IngredientController extends Controller
     {
     }
 
-    //
+    public function index(IngredientListRequest $request)
+    {
+        return new JsonResponse($this->service->getIngredient($request->validated('name')));
+    }
+
     public function store(IngredientStoreRequest $request)
     {
 
@@ -28,10 +29,6 @@ class IngredientController extends Controller
         ]);
     }
 
-    public function index(IngredientListRequest $request)
-    {
-        return new JsonResponse($this->service->getIngredient($request->validated('name')));
-    }
 
     public function update(IngredientUpdateRequest $request, Ingredient $ingredient)
     {

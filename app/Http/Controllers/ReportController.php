@@ -18,6 +18,11 @@ class ReportController extends Controller
 
     }
 
+    public function index(ReportListRequest $request)
+    {
+        return new JsonResponse($this->service->getReport($request->validated('name')));
+    }
+
     public function store(ReportStoreRequest $request)
     {
         return new JsonResponse([
@@ -31,12 +36,9 @@ class ReportController extends Controller
         return new JsonResponse([
             $this->service->updateReport($request->validated(), $report),
             'message' => __('messages.report.update.success', locale: $request->cookie('lang'))
-            ]);
+        ]);
     }
-    public function index(ReportListRequest $request)
-    {
-        return new JsonResponse($this->service->getReport($request->validated('name')));
-    }
+
     public function destroy(Report $report)
     {
         $report->delete();
