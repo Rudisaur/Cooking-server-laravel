@@ -10,9 +10,11 @@ class RestaurantUpdateRequest extends RootRequest
     {
         return [
             'name' => [
+                'required',
                 'string',
             ],
             'image' => [
+                'nullable',
                 'file'
             ],
         ];

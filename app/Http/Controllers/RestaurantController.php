@@ -19,24 +19,24 @@ class RestaurantController extends Controller
     {
     }
 
-    public function index(RestaurantListRequest $request)
+    public function index(RestaurantListRequest $request): JsonResponse
     {
         return $this->successJsonResponse($this->service->getRestaurant($request->validated()));
     }
 
-    public function store(RestaurantStoreRequest $request)
+    public function store(RestaurantStoreRequest $request): JsonResponse
     {
         return $this->successJsonResponse($this->service->createRestaurant($request->validated()),
             'messages.restaurant.store.success');
     }
 
-    public function update(RestaurantUpdateRequest $request, Restaurant $restaurant)
+    public function update(RestaurantUpdateRequest $request, Restaurant $restaurant): JsonResponse
     {
         return $this->successJsonResponse($this->service->updateRestaurant($request->validated(), $restaurant),
             'messages.restaurant.update.success');
     }
 
-    public function destroy(Restaurant $restaurant)
+    public function destroy(Restaurant $restaurant) :JsonResponse
     {
         $restaurant->delete();
         return $this->successJsonResponse(message: 'messages.restaurant.delete.success');

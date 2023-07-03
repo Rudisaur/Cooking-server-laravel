@@ -18,13 +18,13 @@ class AuthService
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'role'=>'cook',
+            'role' => 'cook',
         ]);
 
         return $user->createToken('auth_token')->plainTextToken;
     }
 
-    public function loginUser(array $request)
+    public function loginUser(array $request): ?string
     {
         if (Auth::attempt($request)) {
             $user = Auth::user();

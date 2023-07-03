@@ -18,13 +18,13 @@ class IngredientController extends Controller
     {
     }
 
-    public function index(IngredientListRequest $request)
+    public function index(IngredientListRequest $request): JsonResponse
     {
 
         return $this->successJsonResponse($this->service->getIngredient($request->validated('name')));
     }
 
-    public function store(IngredientStoreRequest $request)
+    public function store(IngredientStoreRequest $request): JsonResponse
     {
 
         return $this->successJsonResponse($this->service->createIngredient($request->validated()),
@@ -32,7 +32,7 @@ class IngredientController extends Controller
     }
 
 
-    public function update(IngredientUpdateRequest $request, Ingredient $ingredient)
+    public function update(IngredientUpdateRequest $request, Ingredient $ingredient): JsonResponse
     {
 
         return $this->successJsonResponse($this->service->updateIngredient($request->validated(), $ingredient),
@@ -40,7 +40,7 @@ class IngredientController extends Controller
     }
 
 
-    public function destroy(Ingredient $ingredient)
+    public function destroy(Ingredient $ingredient): JsonResponse
     {
         $ingredient->delete();
         return $this->successJsonResponse(message:'message.ingredient.delete.success');

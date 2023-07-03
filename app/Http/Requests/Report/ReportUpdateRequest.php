@@ -9,17 +9,22 @@ class ReportUpdateRequest extends RootRequest
     public function rules(): array
     {
         return [
+
             'description' => [
+                'nullable',
                 'string'
             ],
-            'ingredients' => 'array',
+            'ingredients' => [
+                'required',
+                'array',
+            ],
             'restaurant_id' => [
                 'required',
                 'int'
             ],
             'date' => [
+                'required',
                 'int',
-                'required'
             ],
         ];
     }

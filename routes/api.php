@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::resource('recipe', RecipeController::class);
     Route::resource('restaurant', RestaurantController::class);
-    Route::resource('/report', ReportController::class,);
+    Route::resource('report', ReportController::class,);
     // admin role
     Route::resource('ingredients', IngredientController::class);
 });

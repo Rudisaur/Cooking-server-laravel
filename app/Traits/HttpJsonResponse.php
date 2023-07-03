@@ -9,7 +9,7 @@ trait HttpJsonResponse
     protected function successJsonResponse(mixed $data = null, ?string $message = null, int $code = 200): JsonResponse
     {
         return response()->json([
-            'message' => __($message, locale: response()->cookie('lang')),
+            'message' => __($message, locale: request()->cookie('lang')),
             'data' => $data
         ], $code);
     }
@@ -17,7 +17,7 @@ trait HttpJsonResponse
     protected function errorJsonResponse(mixed $data = null, ?string $message = null, int $code = 400): JsonResponse
     {
         return response()->json([
-            'message' => __($message, locale: response()->cookie('lang')),
+            'message' => __($message, locale: request()->cookie('lang')),
             'data' => $data
         ], $code);
     }

@@ -5,10 +5,11 @@ namespace App\Http\Services;
 use App\Http\Requests\Report\ReportUpdateRequest;
 use App\Models\Ingredient;
 use App\Models\Report;
+use App\Models\Restaurant;
 
 class ReportService
 {
-    public function createReport(array $data)
+    public function createReport(array $data): array
     {
         $report = Report::query()->create([
             'date' => $data['date'],
@@ -21,8 +22,8 @@ class ReportService
         $ingredientsData = [];
 
         foreach ($data['ingredients'] as $ingredientData) {
-            if (Ingredient::query()->where('id', $ingredientData['id'])->exists()) {
-                $ingredientsData[$ingredientData['id']] = [
+            if (Ingredient::query()->where('id', $ingredientData['ingredient_id'])->exists()) {
+                $ingredientsData[$ingredientData['ingredient_id']] = [
                     'sum_of_buying' => $ingredientData['sum_of_buying'],
                     'percent_of_effective' => $ingredientData['percent_of_effective'],
                     'weigh_in_gram' => $ingredientData['weigh_in_gram'],
@@ -42,15 +43,22 @@ class ReportService
             'total_purchase_amount' => $totalPurchaseAmount,
             'count_of_ingredients' => $countOfIngredients,
         ]);
-        return $report;
+        return $report->toArray();
     }
 
-    public function getReport(string $name)
+    public function getReport(array $queryData)
     {
-        return Report::query()->where('name', 'ILIKE', '%' . $name . '%')->paginate(20);
+        $reports = Report::query()->where('restaurant_id', $queryData['restaurant_id'])->
+        where('description', 'ILIKE', '%' . $queryData['description'] . '%')->get();
+        /** @var Report $reports */
+        foreach ($reports as $report) {
+            $ingredients = $report->ingredients;
+        }
+
+        return $reports;
     }
 
-    public function updateReport(array $data, Report $report)
+    public function updateReport(array $data, Report $report): array
     {
         /** @var Report $report */
         $report->update([
@@ -83,6 +91,6 @@ class ReportService
             'total_purchase_amount' => $totalPurchaseAmount,
             'count_of_ingredients' => $countOfIngredients,
         ]);
-        return $report;
+        return $report->toArray();
     }
 }

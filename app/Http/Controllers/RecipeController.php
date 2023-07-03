@@ -22,24 +22,24 @@ class RecipeController extends Controller
 
     }
 
-    public function index(RecipeListRequest $request)
+    public function index(RecipeListRequest $request): JsonResponse
     {
         return $this->successJsonResponse($this->service->getRecipe($request->validated('name')));
     }
 
-    public function store(RecipeStoreRequest $request)
+    public function store(RecipeStoreRequest $request): JsonResponse
     {
         $this->successJsonResponse($this->service->createRecipe($request->validated()),
             'messages.recipe.store.success');
     }
 
-    public function update(RecipeUpdateRequest $request, Recipe $recipe)
+    public function update(RecipeUpdateRequest $request, Recipe $recipe): JsonResponse
     {
         return $this->successJsonResponse($this->service->updateRecipe($request->validated(), $recipe),
             'messages.recipe.update.success');
     }
 
-    public function destroy(Recipe $recipe)
+    public function destroy(Recipe $recipe): JsonResponse
     {
         $recipe->delete();
         return $this->successJsonResponse(message: 'messages.recipe.delete.success');

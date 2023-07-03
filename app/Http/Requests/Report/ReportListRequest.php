@@ -9,10 +9,18 @@ class ReportListRequest extends RootRequest
     public function rules(): array
     {
         return [
+            'restaurant_id' => [
+                'required',
+                'int',
+            ],
             'description' => [
+                'nullable',
                 'string'
             ],
-            'date' => 'int'
+            'date' => [
+                'nullable',
+                'int'
+            ],
         ];
     }
 }

@@ -10,16 +10,21 @@ class ReportStoreRequest extends RootRequest
     {
         return [
             'description' => [
+                'nullable',
                 'string'
             ],
-            'ingredients' => 'array',
+            'ingredients' =>
+                [
+                    'required',
+                    'array',
+                ],
             'restaurant_id' => [
                 'required',
                 'int'
             ],
             'date' => [
+                'required',
                 'int',
-                'required'
             ],
         ];
     }

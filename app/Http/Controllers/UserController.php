@@ -14,14 +14,14 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request, AuthService $authService): JsonResponse
     {
-        return $this->successJsonResponse(['accessToken' => $authService->createUser($request->validated())],'user.register.success');
+        return $this->successJsonResponse(['accessToken' => $authService->createUser($request->validated())],'messages.user.register.success');
     }
 
     public function login(LoginRequest $request, AuthService $authService): JsonResponse
     {
         $token = $authService->loginUser($request->validated());
         if ($token) {
-            return $this->successJsonResponse(['accessToken' => $token],'user.login.success');
+            return $this->successJsonResponse(['accessToken' => $token],'messages.user.login.success');
         }
         return $this->errorJsonResponse(message: 'user.login.error');
     }

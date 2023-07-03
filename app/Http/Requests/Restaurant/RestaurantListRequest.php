@@ -8,7 +8,10 @@ class RestaurantListRequest extends RootRequest
     public function rules(): array
     {
         return [
-            'name'=>'string'
+            'name'=> [
+                'nullable',
+                'string',
+            ]
         ];
     }
 }

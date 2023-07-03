@@ -9,7 +9,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class IngredientService
 {
-
     public function createIngredient(array $request): array
     {
         $uploadedFile = $request['image'];

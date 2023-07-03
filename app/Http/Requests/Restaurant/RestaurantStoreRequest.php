@@ -14,6 +14,7 @@ class RestaurantStoreRequest extends RootRequest
                 'string',
             ],
             'image'=>[
+                'nullable',
                 'file'
             ],
         ];
