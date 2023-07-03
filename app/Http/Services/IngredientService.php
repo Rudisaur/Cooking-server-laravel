@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class IngredientService
 {
 
-    public function createIngredient(array $request)
+    public function createIngredient(array $request): array
     {
         $uploadedFile = $request['image'];
         $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
@@ -19,25 +19,21 @@ class IngredientService
             'image_link'=>$imageUrl,
             'description'=>$request['description'],
         ]);
-        return $ingredient;
+        return $ingredient->toArray();
     }
-    public function updateIngredient(array $data, Ingredient $ingredient)
+    public function updateIngredient(array $data, Ingredient $ingredient): array
     {
         if(array_key_exists('image', $data)){
             $uploadedFile = $data['image'];
             $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
-            return $ingredient->fill([
-                'name'=>$data['name'],
-                'image_link'=>$imageUrl,
-                'description'=>$data['description'],
-            ])->save();
+            $ingredient->fill(['image_link'=>$imageUrl])->save();
         }
 
         $ingredient->fill([
             'name'=>$data['name'],
             'description'=>$data['description'],
         ])->save();
-        return $ingredient;
+        return $ingredient->toArray();
     }
 
     public function getIngredient(?string $name): LengthAwarePaginator

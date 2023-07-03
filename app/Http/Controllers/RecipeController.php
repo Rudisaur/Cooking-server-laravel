@@ -9,11 +9,14 @@ use App\Http\Requests\Recipe\RecipeUpdateRequest;
 use App\Http\Services\RecipeService;
 use App\Integration\Database\Post;
 use App\Models\Recipe;
+use App\Traits\HttpJsonResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
+    use HttpJsonResponse;
+
     public function __construct(private RecipeService $service)
     {
 
@@ -21,31 +24,25 @@ class RecipeController extends Controller
 
     public function index(RecipeListRequest $request)
     {
-        return new JsonResponse($this->service->getRecipe($request->validated('name')));
+        return $this->successJsonResponse($this->service->getRecipe($request->validated('name')));
     }
 
     public function store(RecipeStoreRequest $request)
     {
-        return new JsonResponse([
-            $this->service->createRecipe($request->validated()),
-            'message' => __('messages.recipe.store.success', locale: $request->cookie('lang'))
-        ]);
+        $this->successJsonResponse($this->service->createRecipe($request->validated()),
+            'messages.recipe.store.success');
     }
 
     public function update(RecipeUpdateRequest $request, Recipe $recipe)
     {
-        return new JsonResponse([
-            $this->service->updateRecipe($request->validated(), $recipe),
-            'message' => __('messages.recipe.update.success', locale: $request->cookie('lang'))
-        ]);
+        return $this->successJsonResponse($this->service->updateRecipe($request->validated(), $recipe),
+            'messages.recipe.update.success');
     }
 
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return new JsonResponse([
-            'message' => __('messages.recipe.delete.success', locale: request()->cookie('lang'))
-        ]);
+        return $this->successJsonResponse(message: 'messages.recipe.delete.success');
     }
 
 }

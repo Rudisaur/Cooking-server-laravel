@@ -5,44 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Services\AuthService;
+use App\Traits\HttpJsonResponse;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
+    use HttpJsonResponse;
 
     public function register(RegisterRequest $request, AuthService $authService): JsonResponse
     {
-        $token = $authService->createUser($request->validated());
-        return response()->json(['accessToken' => $token]);
+        return $this->successJsonResponse(['accessToken' => $authService->createUser($request->validated())],'user.register.success');
     }
 
-    public function login(LoginRequest $request, AuthService $authService)
+    public function login(LoginRequest $request, AuthService $authService): JsonResponse
     {
         $token = $authService->loginUser($request->validated());
-        return response()->json($token);
-    }
-
-    public function getUsers ()
-    {
-
+        if ($token) {
+            return $this->successJsonResponse(['accessToken' => $token],'user.login.success');
+        }
+        return $this->errorJsonResponse(message: 'user.login.error');
     }
 }
-
-
-
-
-
-//        $userId = $authService->createUser($request->validated());
-//        $refreshToken = $authService->createJWT($userId, TokenType::REFRESH);
-//        setcookie('refreshToken',$refreshToken, time()+7200);
-//        $authService->setRefreshToken($userId, $refreshToken);
-//        return response()->json([
-//            'accessToken' => $authService->createJWT($userId, TokenType::ACCESS),
-//        ]);
-//        $userId = $authService->loginUser($request->validated());
-//        $refreshToken = $authService->createJWT($userId, TokenType::REFRESH);
-//        setcookie('refreshToken',$refreshToken, time()+7200);
-//        $authService->setRefreshToken($userId, $refreshToken);
-//        return response()->json([
-//            'accessToken' => $authService->createJWT($userId, TokenType::ACCESS),
-//        ]);

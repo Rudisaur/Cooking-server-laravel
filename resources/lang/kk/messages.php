@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'user.login.success' => 'Сіз жүйеге сәтті кірдіңіз!',
+    'user.login.error' => 'Авторизация қатесі!',
+    'user.register.success' => 'Сіз сәтті тіркелдіңіз!',
+
     'ingredient.store.success' => 'Ингредиент сәтті құрылды!',
     'ingredient.update.success' => 'Ингредиент сәтті жаңартылды!',
     'ingredient.delete.success' => 'Ингредиент сәтті жойылды!',

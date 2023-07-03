@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'user.login.success' => 'Вы успешно авторизовались!',
+    'user.login.error' => 'Ошибка авторизации!',
+    'user.register.success' => 'Вы успешно зарегестрировались!',
+
     'ingredient.store.success' => 'Ингредиент успешно создан!',
     'ingredient.update.success' => 'Ингредиент успешно обновлён!',
     'ingredient.delete.success' => 'Ингредиент успешно удалён!',

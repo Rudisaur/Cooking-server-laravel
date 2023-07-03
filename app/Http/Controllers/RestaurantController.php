@@ -8,41 +8,37 @@ use App\Http\Requests\Restaurant\RestaurantStoreRequest;
 use App\Http\Requests\Restaurant\RestaurantUpdateRequest;
 use App\Http\Services\RestaurantService;
 use App\Models\Restaurant;
+use App\Traits\HttpJsonResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
+    use HttpJsonResponse;
     public function __construct(private RestaurantService $service)
     {
     }
 
     public function index(RestaurantListRequest $request)
     {
-        return new JsonResponse($this->service->getRestaurant($request->validated()));
+        return $this->successJsonResponse($this->service->getRestaurant($request->validated()));
     }
 
     public function store(RestaurantStoreRequest $request)
     {
-        return new JsonResponse([
-            $this->service->createRestaurant($request->validated()),
-            'message' => __('messages.restaurant.store.success', locale: $request->cookie('lang'))
-        ]);
+        return $this->successJsonResponse($this->service->createRestaurant($request->validated()),
+            'messages.restaurant.store.success');
     }
 
     public function update(RestaurantUpdateRequest $request, Restaurant $restaurant)
     {
-        return new JsonResponse([
-            $this->service->updateRestaurant($request->validated(), $restaurant),
-            'message' => __('messages.restaurant.update.success', locale: $request->cookie('lang'))
-        ]);
+        return $this->successJsonResponse($this->service->updateRestaurant($request->validated(), $restaurant),
+            'messages.restaurant.update.success');
     }
 
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
-        return new JsonResponse([
-            'message' => __('messages.restaurant.delete.success', locale: request()->cookie('lang'))
-        ]);
+        return $this->successJsonResponse(message: 'messages.restaurant.delete.success');
     }
 }

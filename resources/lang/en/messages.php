@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'user.login.success' => 'You have successfully logged in!',
+    'user.login.error' => 'Auth error!',
+    'user.register.success' => 'You have successfully registered!',
+
     'ingredient.store.success' => 'Ingredient successfully created!',
     'ingredient.update.success' =>'Ingredient successfully updated!',
     'ingredient.delete.success' => 'Ingredient Successfully deleted!',

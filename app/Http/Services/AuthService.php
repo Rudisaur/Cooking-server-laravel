@@ -11,12 +11,9 @@ use Ramsey\Uuid\Uuid;
 
 class AuthService
 {
-//    const REFRESH_LIFETIME = 20000;
-//    const ACCESS_LIFETIME = 30;
-
-
     public function createUser(array $request): string
     {
+        /** @var User $user */
         $user = User::query()->create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -31,36 +28,8 @@ class AuthService
     {
         if (Auth::attempt($request)) {
             $user = Auth::user();
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return $token;
+            return $user->createToken('auth_token')->plainTextToken;
         }
         return null;
     }
-
-//    public function createJWT(int $userId, TokenType $tokenType): string
-//    {
-//        $payload = [
-//            'iat' => Carbon::now()->timestamp + ($tokenType->value === 'refresh') ? self::REFRESH_LIFETIME: self::ACCESS_LIFETIME,
-//            'id'=>$userId,
-//        ];
-//        return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
-//    }
-//    public function setRefreshToken($userId, $refreshToken)
-//    {
-//        $user = User::query()->find($userId);
-//        $user->query()->update([
-//            'remember_token'=>$refreshToken
-//        ]);
-//    }
-//    public function loginUser(array $request){
-//        if(Auth::attempt($request)){
-//            //$user = DB::table('users')->where('email','=',$request['email'])->first();
-//            return User::query()->where('email' , $request['email'])->first()->id;
-//        }
-//        return back()->withErrors([
-//            'email' => 'Invalid credentials',
-//        ]);
-//
-//    }
 }
