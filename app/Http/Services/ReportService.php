@@ -48,11 +48,13 @@ class ReportService
 
     public function getReport(array $queryData)
     {
+        $responseData = [];
         $reports = Report::query()->where('restaurant_id', $queryData['restaurant_id'])->
         where('description', 'ILIKE', '%' . $queryData['description'] . '%')->get();
-        /** @var Report $reports */
-        foreach ($reports as $report) {
-            $ingredients = $report->ingredients;
+        $responseData['reports'] = $reports;
+        /** @var Report $report */
+        foreach ($responseData['reports'] as $report) {
+            dd($report->ingredients()->get());
         }
 
         return $reports;

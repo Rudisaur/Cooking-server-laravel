@@ -36,5 +36,4 @@ Route::post('/login',[UserController::class, 'login']);
 Route::resource('ingredients', IngredientController::class)->only('index');
 
 Route::get('cooks', [UserController::class, 'getUsers']);
-Route::get('/ingredient/get', [IngredientController::class, 'getIngredient']);
 Route::get('/recipes', [RecipeController::class,'getRecipes']);
