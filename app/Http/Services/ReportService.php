@@ -48,16 +48,16 @@ class ReportService
 
     public function getReport(array $queryData)
     {
-        $responseData = [];
-        $reports = Report::query()->where('restaurant_id', $queryData['restaurant_id'])->
-        where('description', 'ILIKE', '%' . $queryData['description'] . '%')->get();
-        $responseData['reports'] = $reports;
-        /** @var Report $report */
-        foreach ($responseData['reports'] as $report) {
-            dd($report->ingredients()->get());
+        if(Restaurant::query()->where('id',$queryData['restaurant_id'])->where('user_id', request()->user()->id)->exists()){
+            $reports = Report::query()->where('restaurant_id', $queryData['restaurant_id'])->
+            where('description', 'ILIKE', '%' . $queryData['description'] . '%')->get();
+            $responseData = [];
+            foreach ($reports as $report){
+
+            }
         }
 
-        return $reports;
+
     }
 
     public function updateReport(array $data, Report $report): array

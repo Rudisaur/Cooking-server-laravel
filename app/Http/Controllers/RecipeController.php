@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\recipe\RecipeListRequest;
+use App\Http\Requests\Recipe\RecipeListRequest;
 use App\Http\Requests\Recipe\RecipeStoreRequest;
 use App\Http\Requests\Recipe\RecipeUpdateRequest;
 use App\Http\Services\RecipeService;
-use App\Integration\Database\Post;
 use App\Models\Recipe;
 use App\Traits\HttpJsonResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
@@ -19,7 +16,6 @@ class RecipeController extends Controller
 
     public function __construct(private RecipeService $service)
     {
-
     }
 
     public function index(RecipeListRequest $request): JsonResponse
@@ -29,6 +25,7 @@ class RecipeController extends Controller
 
     public function store(RecipeStoreRequest $request): JsonResponse
     {
+        dd($request->validated());
         return $this->successJsonResponse($this->service->createRecipe($request->validated()),
             'messages.recipe.store.success');
     }
