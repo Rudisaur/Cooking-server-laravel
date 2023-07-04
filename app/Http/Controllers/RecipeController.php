@@ -25,7 +25,6 @@ class RecipeController extends Controller
 
     public function store(RecipeStoreRequest $request): JsonResponse
     {
-        dd($request->validated());
         return $this->successJsonResponse($this->service->createRecipe($request->validated()),
             'messages.recipe.store.success');
     }
