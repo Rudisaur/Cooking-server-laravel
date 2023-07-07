@@ -53,8 +53,13 @@ class ReportService
             where('description', 'ILIKE', '%' . $queryData['description'] . '%')->get();
             $responseData = [];
             foreach ($reports as $report){
-
+                /** @var Report $report */
+                $responseData[] = [
+                    'report' => $report->toArray(),
+                    'ingredients' => $report->ingredients()->select()->get()->toArray()
+                ];
             }
+            return $responseData;
         }
 
 
