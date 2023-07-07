@@ -2,12 +2,8 @@
 namespace App\Http\Services;
 use App\Enums\TokenType;
 use App\Models\User;
-use Carbon\Carbon;
-use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Ramsey\Uuid\Uuid;
 
 class AuthService
 {
@@ -20,15 +16,18 @@ class AuthService
             'password' => Hash::make($request['password']),
             'role' => 'cook',
         ]);
-
-        return $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
+        setcookie('auth_token', $token);
+        return $token;
     }
 
     public function loginUser(array $request): ?string
     {
         if (Auth::attempt($request)) {
             $user = Auth::user();
-            return $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
+            setcookie('auth_token', $token);
+            return $token;
         }
         return null;
     }
