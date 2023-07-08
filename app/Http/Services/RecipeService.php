@@ -12,7 +12,16 @@ class RecipeService
 {
     public function getRecipe(string $name)
     {
-        return Recipe::query()->where('name', 'ILIKE', '%' . $name . '%')->paginate(20);
+        $recipes = Recipe::query()->where('name', 'ILIKE', '%' . $name . '%')->get();
+        $requestData = [];
+        foreach ($recipes as $recipe) {
+            $requestData[] = [
+                'recipe' => $recipe->toArray(),
+                'ingredients' => $recipe->ingredients()->select()->get()->toArray()
+            ];
+        }
+
+        return $requestData;
     }
 
     public function createRecipe(array $data)
@@ -46,14 +55,14 @@ class RecipeService
         if ($data['image']) {
             $uploadedFile = $data['image'];
             $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
-            $recipe->update(['image_link'=>$imageUrl]);
+            $recipe->update(['image_link' => $imageUrl]);
         }
         $recipe->update([
             'name' => $data['name'],
             'description' => $data['description'],
         ]);
         $ingredientsData = [];
-        foreach ($data['ingredients'] as $ingredientData){
+        foreach ($data['ingredients'] as $ingredientData) {
             if (Ingredient::query()->where('id', $ingredientData['id'])->exists()) {
                 $ingredientsData[$ingredientData['id']] = [
                     'description' => $ingredientData['description'],
