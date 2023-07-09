@@ -76,8 +76,8 @@ class ReportService
         $ingredientsData = [];
 
         foreach ($data['ingredients'] as $ingredientData) {
-            if (Ingredient::query()->where('id', $ingredientData['id'])->exists()) {
-                $ingredientsData[$ingredientData['id']] = [
+            if (Ingredient::query()->where('id', $ingredientData['ingredient_id'])->exists()) {
+                $ingredientsData[$ingredientData['ingredient_id']] = [
                     'sum_of_buying' => $ingredientData['sum_of_buying'],
                     'percent_of_effective' => $ingredientData['percent_of_effective'],
                     'weigh_in_gram' => $ingredientData['weigh_in_gram'],

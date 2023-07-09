@@ -50,11 +50,11 @@ class RecipeService
 
     public function updateRecipe(array $data, Recipe $recipe)
     {
-        if ($data['image']) {
-            $uploadedFile = $data['image'];
-            $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
-            $recipe->update(['image_link' => $imageUrl]);
-        }
+//        if ($data['image']) {
+//            $uploadedFile = $data['image'];
+//            $imageUrl = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
+//            $recipe->update(['image_link' => $imageUrl]);
+//        }
         $recipe->update([
             'name' => $data['name'],
             'description' => $data['description'],

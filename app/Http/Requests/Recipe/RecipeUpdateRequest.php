@@ -18,9 +18,11 @@ class RecipeUpdateRequest extends RootRequest
                 'min:1',
             ],
             'description'=>[
+                'nullable',
                 'string',
             ],
             'image'=>[
+                'nullable',
                 'file',
             ],
             'ingredients'=> 'array'
