@@ -70,7 +70,6 @@ class ReportService
         $report->update([
             'date' => $data['date'],
             'description' => $data['description'],
-            'restaurant_id' => $data['restaurant_id']
         ]);
         $totalPurchaseAmount = 0;
         $countOfIngredients = 0;
@@ -88,7 +87,6 @@ class ReportService
             } else {
                 abort(400);
             }
-            dd($report);
         }
         $report->ingredients()->sync($ingredientsData);
 
