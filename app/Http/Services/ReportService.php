@@ -2,7 +2,6 @@
 
 namespace App\Http\Services;
 
-use App\Http\Requests\Report\ReportUpdateRequest;
 use App\Models\Ingredient;
 use App\Models\Report;
 use App\Models\Restaurant;
@@ -89,7 +88,7 @@ class ReportService
             } else {
                 abort(400);
             }
-
+            dd($report);
         }
         $report->ingredients()->sync($ingredientsData);
 

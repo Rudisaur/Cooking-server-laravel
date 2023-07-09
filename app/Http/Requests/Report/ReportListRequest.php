@@ -14,7 +14,7 @@ class ReportListRequest extends RootRequest
                 'int',
             ],
             'description' => [
-                'nullable',
+                'required',
                 'string'
             ],
             'date' => [

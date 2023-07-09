@@ -2,11 +2,9 @@
 
 namespace App\Http\Services;
 
-use App\Models\Food;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Support\Facades\DB;
 
 class RecipeService
 {
@@ -74,7 +72,7 @@ class RecipeService
             }
         }
         $recipe->ingredients()->sync($ingredientsData);
-        return $recipe;
+        return $recipe->toArray();
     }
 
 }

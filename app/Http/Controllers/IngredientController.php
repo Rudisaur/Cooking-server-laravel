@@ -43,6 +43,6 @@ class IngredientController extends Controller
     public function destroy(Ingredient $ingredient): JsonResponse
     {
         $ingredient->delete();
-        return $this->successJsonResponse(message:'message.ingredient.delete.success');
+        return $this->successJsonResponse(message:'messages.ingredient.delete.success');
     }
 }
