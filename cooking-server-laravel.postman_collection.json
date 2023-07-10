@@ -1,0 +1,772 @@
+{
+	"info": {
+		"_postman_id": "b585af8f-8f30-490f-919c-8308665b85ae",
+		"name": "cooking-server-laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26803003",
+		"_collection_link": "https://crimson-star-985773.postman.co/workspace/Team-Tardigrades~375a6b9e-8373-41a8-8d2a-eec1db039848/collection/13888765-b585af8f-8f30-490f-919c-8308665b85ae?action=share&creator=26803003&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Joseph\",\r\n    \"email\":\"Joestar@gmail.com\",\r\n    \"password\":\"password1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/register",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"Joestar@gmail.com\",\r\n    \"password\":\"password1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/login",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create an ingredient",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|fwMfbGWdo88dgDMRtmvuvoawsaTruxPo41voeahF",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSFR-TOKEN",
+						"value": "26|eti8c0toft4z2CTMxmFuukACixnVjxoA1ytzo0TV",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Referer",
+						"value": "http://127.0.0.1:8000",
+						"type": "text"
+					},
+					{
+						"key": "laravel_session",
+						"value": "eyJpdiI6IjNlUzlrWEZGRjlVSGxyaHd5ZHdpUXc9PSIsInZhbHVlIjoiSzJ4bVU1RklVNDN3UFVFRjE0bjUydnFGM3VEQ09XczUwMXE3MnNlYjczMW9DTVFZM1RpVnAvN0YrNmlTeVVpUGlCT29qNXNNQVpEYjE2c3lQcFlSTk12VXV5bEJjRHZXeVp3WnF0V1NRSTNhZmJ6QWljUERJQzRsdmd1Skc5ZzQiLCJtYWMiOiI2NmJlN2U0YmEwM2NkNWMxY2U2ODMwYWVmZDJjYmY1N2IwZWMwODc5YTU0NWY1NmQwYjg5MjFiOTE2NDgyYmU0IiwidGFnIjoiIn0%3D",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "potato",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "root vegetable",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/wardo/Downloads/cat.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/ingredients",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get an ingredient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|fwMfbGWdo88dgDMRtmvuvoawsaTruxPo41voeahF",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/ingredients",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update an ingredient",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|fwMfbGWdo88dgDMRtmvuvoawsaTruxPo41voeahF",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"potato\",\r\n    \"description\": \"brown root vegetable\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/ingredients/3",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"3"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete an ingredient",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|fwMfbGWdo88dgDMRtmvuvoawsaTruxPo41voeahF",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/ingredients/4",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a recipe",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|UQgcKpjiyXwIVOaPmf85ePs5o51GvYa1wgubxtxr",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"rom\",\r\n    \"description\": \"red\",\r\n    \"ingredients\": [\r\n     {\r\n        \"id\": 1,\r\n        \"description\":\"cut\",\r\n        \"weigh_in_gram\": 100,\r\n        \"stage\": 1\r\n    },\r\n     {\r\n         \"id\": 2,\r\n         \"description\":\"fry\",\r\n         \"weigh_in_gram\": 100,\r\n         \"stage\": 1\r\n     },\r\n      {\r\n          \"id\": 2,\r\n         \"description\":\"salt\",\r\n         \"weigh_in_gram\": 100,\r\n         \"stage\": 2\r\n      }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/recipe",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a recipe",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4|leLA58xkpNQRDiMmo5g0YjVHUZ3CZUiswEYcsG4b",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/recipe?name=r",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"recipe"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "r"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a recipe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|UQgcKpjiyXwIVOaPmf85ePs5o51GvYa1wgubxtxr",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"borsh\",\r\n    \"description\": \"red\",\r\n    \"ingredients\": [\r\n     {\r\n        \"id\": 1,\r\n        \"description\":\"bla bla\",\r\n        \"weigh_in_gram\": 100,\r\n        \"stage\": 1\r\n    },\r\n     {\r\n         \"id\": 2,\r\n         \"description\":\"bla\",\r\n         \"weigh_in_gram\": 100,\r\n         \"stage\": 1\r\n     },\r\n      {\r\n          \"id\": 2,\r\n         \"description\":\"bla bla bla\",\r\n         \"weigh_in_gram\": 100,\r\n         \"stage\": 2\r\n      }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/recipe/1",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"recipe",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a recipe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/recipe/4",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"recipe",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a restaurant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"VerniShavermu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/restaurant",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a reastaurant",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accessToken",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjIwMDAwLCJpZCI6NH0.ZW3aXPEGaWtaL2mS6r6ejYokgfMRim5IRCnWS2cZqXk",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/restaurant?name=s",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"restaurant"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "s"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a restaurant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"VerniShavermu!!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/restaurant/1",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"restaurant",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a restaurant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/restaurant/1",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"restaurant",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": 1688276723,\r\n    \"description\":\"some description\",\r\n    \"restaurant_id\": 2,\r\n    \"ingredients\": [\r\n        {\r\n            \"ingredient_id\": 2,\r\n            \"sum_of_buying\": 2000,\r\n            \"percent_of_effective\": 95,\r\n            \"weigh_in_gram\": 1000\r\n        },\r\n        {\r\n            \"ingredient_id\": 1,\r\n            \"sum_of_buying\": 500,\r\n            \"percent_of_effective\": 80,\r\n            \"weigh_in_gram\": 3000\r\n        }\r\n    ]\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/report",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/report?restaurant_id=2&description=s",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"report"
+					],
+					"query": [
+						{
+							"key": "restaurant_id",
+							"value": "2"
+						},
+						{
+							"key": "description",
+							"value": "s"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|PDOLI5dC8BPybLR28xDC3IqOte864u6Kk9jV1zgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": 1688276723,\r\n    \"description\":\"some changed description\",\r\n    \"restaurant_id\": 2,\r\n    \"ingredients\": [\r\n        {\r\n            \"ingredient_id\": 2,\r\n            \"sum_of_buying\": 4000,\r\n            \"percent_of_effective\": 95,\r\n            \"weigh_in_gram\": 1000\r\n        },\r\n        {\r\n            \"ingredient_id\": 1,\r\n            \"sum_of_buying\": 6000,\r\n            \"percent_of_effective\": 80,\r\n            \"weigh_in_gram\": 3000\r\n        }\r\n    ]\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/report/6",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"report",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete report",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://cooking-kz-dc9b40b269b0.herokuapp.com/api/report/1",
+					"protocol": "https",
+					"host": [
+						"cooking-kz-dc9b40b269b0",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"report",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
